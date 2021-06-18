@@ -55,13 +55,40 @@ app.use(cors());
         {
           if (err) { console.error(err); return; }
           console.log(result)
-          console.log(result.rows);
-          res.send(result.rows);
         });
     });  
    res.send("Sent")
  
 })
+
+app.get('/edit', function (req, res) {
+
+  str="UPDATE departments SET FIRST_NAME="+"'"+req.query.firstname.trim()+"'"+","+"LAST_NAME="+"'"+req.query.lastname.trim()+"'"+","+"DEPARTMENT_NAME="+"'"+req.query.dept.trim()+"' WHERE DEPARTMENT_ID="+req.query.uid 
+   console.log(str)
+   console.log(req.query)
+  
+   oracledb.getConnection(
+    {
+      user          : "SYS",
+      password      : "bhumi",
+      connectString : "localhost/XE",
+      privilege: oracledb.SYSDBA
+    },
+    function(err, connection)
+    {
+      if (err) { console.error(err); return; }
+      connection.execute(
+        str,
+        function(err, result)
+        {
+          if (err) { console.error(err); return; }
+          console.log(result)
+        });
+    });  
+   res.send("Sent")
+ 
+})
+
 
  var server = app.listen(8000, function () {
   var host = server.address().address

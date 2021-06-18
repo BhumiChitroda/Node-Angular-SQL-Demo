@@ -1,1 +1,79 @@
-<p>edit-user works!</p>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+    
+    input[type=text], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    
+    input[type=number], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    
+    
+    input[type=submit] {
+      background-color: #008CBA; 
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    .container {
+      margin-left:20%;
+      margin-right:20%;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h1 style="text-align:center">Edit User in the SQL Database</h1>
+    
+    <div class="container">
+      <form  #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)">
+    
+        <label for="id">User Id</label>
+        <select style="padding: 5px 15px 5px 15px; max-width: 100%; padding: .375rem .75rem; font-size: 1rem; background-color: white;" (change)="phraseType($event)" [(ngModel)]="newmodel">
+            <option disabled selected value="undefined">Select an Option</option>
+            <option *ngFor="let x of powers" label="{{x}}" value="{{x}}" >{{x}}</option> 
+        </select>
+
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name.." [(ngModel)]="firstName" required>
+    
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name.." [(ngModel)]="lastName" required>
+    
+        <label for="dept">Department Name</label>
+        <input type="text" id="dept" name="dept" placeholder="Your Department name.." [(ngModel)]="deptName" required>
+        <div  style="text-align: center;"> <input type="submit" value="Submit"></div>
+      </form>
+    </div>
+    
+    </body>
+    
